@@ -61,7 +61,7 @@
             const wrapper = input.closest('.' + this.options.wrapperClass);
             const results = wrapper.getElementsByClassName(this.options.resultsClass)[0];
             const value = input.value;
-            if(value.length <= this.options.minSearch) {
+            if(value.length < this.options.minSearch) {
                 results.classList.add('hidden');
                 return;
             }
@@ -69,6 +69,8 @@
                 if (response.status) {
                     results.innerHTML = response.results;
                     results.classList.remove('hidden');
+                } else {
+                    results.classList.add('hidden');
                 }
             }, (error) => {
                 console.log(error)
