@@ -7,7 +7,8 @@
             url: '/aesearch',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'
-            }
+            },
+            minSearch: 3,
         };
 
         constructor(options = {}) {
@@ -60,7 +61,7 @@
             const wrapper = input.closest('.' + this.options.wrapperClass);
             const results = wrapper.getElementsByClassName(this.options.resultsClass)[0];
             const value = input.value;
-            if(value === '') {
+            if(value.length <= this.options.minSearch) {
                 results.classList.add('hidden');
                 return;
             }
